@@ -1,35 +1,14 @@
 import Foundation
 
 public final class SuperSDKMain {
-    private static let loaderClassNames = [
-        "SuperSDKChatLoader",
-        "SuperSDKNetworkLoader"
-        // Adicione aqui loaders de novos módulos
-    ]
-
-    private static func runLoaders() {
-        for name in loaderClassNames {
-            if let cls = NSClassFromString(name) as? NSObject.Type,
-               cls.responds(to: Selector(("registerModule"))) {
-                print("🔵 Found loader: \(name)")
-                cls.perform(Selector(("registerModule")))
-            } else {
-                print("⚪️ Loader NOT found: \(name)")
-            }
-        }
-    }
-
     public static func start() {
-        print("🚀 SuperSDKMain.start() called")
-
-        // 🔥 Agora os módulos serão carregados
-        runLoaders()
+        print("🚀 SuperSDKMain.start() called — executing registered modules...")
 
         let names = ModuleRegistry.shared.registeredModuleNames()
-        print("Modules: \(names)")
-
         if names.isEmpty {
-            print("⚠️ No modules registered!")
+            print("⚠️ No SuperSDK modules registered. Did you install subspecs?")
+        } else {
+            print("Registered modules:", names)
         }
 
         ModuleRegistry.shared.executeAll()

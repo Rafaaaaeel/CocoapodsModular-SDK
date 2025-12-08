@@ -1,16 +1,17 @@
 import Foundation
 
-public protocol SuperSDKModule {
+@objc public protocol SuperSDKModule {
     func execute()
 }
 
-public final class ModuleRegistry {
+@objcMembers
+public final class ModuleRegistry: NSObject {
     public static let shared = ModuleRegistry()
-    private init() {}
+    private override init() {}
 
     private var modules: [SuperSDKModule] = []
 
-    public func register(_ module: SuperSDKModule) {
+    @objc public func register(_ module: SuperSDKModule) {
         modules.append(module)
     }
 

@@ -1,13 +1,17 @@
-
 import Foundation
 
-public final class SuperSDKNetwork: SuperSDKModule {
-    public init() {}
+@objcMembers
+public final class SuperSDKNetwork: NSObject, SuperSDKModule {
+    public override init() { super.init() }
+
     public func execute() {
-        // Put real network startup logic here (initialization, start listeners, etc.)
-        print("🟢 SuperSDKNetwork.execute() — Network module executed via CocoaPods!")
+        print("🟢 SuperSDKNetwork.execute() — Network module executed!")
     }
 }
 
-// Auto-register the network module when this file is present in the build
-private let _superSDK_network_register = ModuleAutoRegister(SuperSDKNetwork())
+@objc public final class SuperSDKNetworkLoader: NSObject {
+    @objc public override class func load() {
+        ModuleRegistry.shared.register(SuperSDKNetwork())
+        print("🟡 SuperSDKNetworkLoader.load() — Network module registered.")
+    }
+}

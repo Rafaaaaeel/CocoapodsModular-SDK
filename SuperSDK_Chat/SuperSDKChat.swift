@@ -1,17 +1,17 @@
 import Foundation
 
 @objcMembers
-public final class SuperSDKChat: NSObject /* <- NOTE: subclass NSObject */ , SuperSDKModule {
+public final class SuperSDKChat: NSObject, SuperSDKModule {
     public override init() { super.init() }
 
     public func execute() {
-        print("🟣 SuperSDKChat.execute() — Chat module executed via CocoaPods!")
+        print("🟣 SuperSDKChat.execute() — Chat module executed!")
     }
 }
 
-/// Loader Objective-C visible — será buscado pelo Core via NSClassFromString
 @objc public final class SuperSDKChatLoader: NSObject {
-    @objc public static func registerModule() {
+    @objc public override class func load() {
         ModuleRegistry.shared.register(SuperSDKChat())
+        print("🔵 SuperSDKChatLoader.load() — Chat module registered.")
     }
 }
