@@ -11,24 +11,28 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '12.0'
   s.requires_arc = true
 
-  s.subspec 'Core' do |sp|
+ s.subspec 'Core' do |sp|
     sp.source_files = 'SuperSDK_Core/**/*.{swift}'
-  end
-
-  s.subspec 'Network' do |sp|
-    sp.dependency 'SuperSDK/Core'
-    sp.source_files = 'SuperSDK_Network/**/*.{swift}'
+    sp.module_name = 'SuperSDK'
   end
 
   s.subspec 'Chat' do |sp|
-    sp.dependency 'SuperSDK/Core'
-    sp.source_files = 'SuperSDK_Chat/**/*.{swift}'
+      sp.dependency 'SuperSDK/Core'
+      sp.source_files = 'SuperSDK_Chat/**/*.{swift}'
+      sp.module_name = 'SuperSDK'
+  end
+
+  s.subspec 'Network' do |sp|
+      sp.dependency 'SuperSDK/Core'
+      sp.source_files = 'SuperSDK_Network/**/*.{swift}'
+      sp.module_name = 'SuperSDK'
   end
 
   s.subspec 'All' do |sp|
-    sp.dependency 'SuperSDK/Core'
-    sp.dependency 'SuperSDK/Network'
-    sp.dependency 'SuperSDK/Chat'
-    sp.source_files = 'SuperSDK_Entry/**/*.{swift}'
+      sp.dependency 'SuperSDK/Core'
+      sp.dependency 'SuperSDK/Chat'
+      sp.dependency 'SuperSDK/Network'
+      sp.source_files = 'SuperSDK_Entry/**/*.{swift}' 
+      sp.module_name = 'SuperSDK'
   end
 end
