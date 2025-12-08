@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'SuperSDK'
-  s.version          = '1.0.5'
+  s.version          = '1.0.6'
   s.summary          = 'Modular Super SDK with auto-registration'
   s.description      = 'Modules auto-register using static initializers; supports modular installation via subspecs.'
   s.homepage         = 'https://example.com'
