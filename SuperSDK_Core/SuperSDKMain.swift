@@ -1,37 +1,37 @@
 import Foundation
 
-internal enum SuperSDKForceLoader {
-    static func loadAllModules() {
-        // Tenta encontrar e invocar loaders expostos pelos subspecs (Chat, Network, etc)
-        tryCallLoader(named: "SuperSDKChatLoader")
-        // Se tiver Network: tryCallLoader(named: "SuperSDKNetworkLoader")
-    }
-
-    private static func tryCallLoader(named className: String) {
-        guard let cls = NSClassFromString(className) as? NSObject.Type else {
-            // Classe não encontrada no runtime -> provavelmente o módulo não foi compilado
-            return
-        }
-        let selector = NSSelectorFromString("registerModule")
-        if cls.responds(to: selector) {
-            // Invoca o método estático registerModule
-            // Uso perform porque é NSObject.Type (metaclass)
-            _ = cls.perform(selector)
-        }
-    }
-}
-
 public final class SuperSDKMain {
-    public static func start() {
-        SuperSDKForceLoader.loadAllModules()
+    private static let loaderClassNames = [
+        "SuperSDKChatLoader",
+        "SuperSDKNetworkLoader"
+        // Adicione aqui loaders de novos módulos
+    ]
 
-        print("🚀 SuperSDKMain.start() called — executing registered modules...")
-        let names = ModuleRegistry.shared.registeredModuleNames()
-        if names.isEmpty {
-            print("⚠️ No SuperSDK modules registered. Did you install subspecs?")
-        } else {
-            print("Registered modules: \(names)")
+    private static func runLoaders() {
+        for name in loaderClassNames {
+            if let cls = NSClassFromString(name) as? NSObject.Type,
+               cls.responds(to: Selector(("registerModule"))) {
+                print("🔵 Found loader: \(name)")
+                cls.perform(Selector(("registerModule")))
+            } else {
+                print("⚪️ Loader NOT found: \(name)")
+            }
         }
+    }
+
+    public static func start() {
+        print("🚀 SuperSDKMain.start() called")
+
+        // 🔥 Agora os módulos serão carregados
+        runLoaders()
+
+        let names = ModuleRegistry.shared.registeredModuleNames()
+        print("Modules: \(names)")
+
+        if names.isEmpty {
+            print("⚠️ No modules registered!")
+        }
+
         ModuleRegistry.shared.executeAll()
     }
 }
