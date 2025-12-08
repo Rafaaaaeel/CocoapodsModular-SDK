@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'SuperSDK'
-  s.version          = '1.0.8'
+  s.version          = '1.0.9'
   s.summary          = 'Modular Super SDK with auto-registration'
   s.description      = 'Modules auto-register using static initializers; supports modular installation via subspecs.'
   s.homepage         = 'https://example.com'
@@ -21,26 +21,23 @@ Pod::Spec.new do |s|
 
   # ---------------- CORE ----------------
   s.subspec 'Core' do |sp|
-    sp.source_files = 'SuperSDK_Core/**/*.{swift}'
+    sp.source_files = '**/SuperSDK_Core/**/*.{swift}'
   end
 
-  # ---------------- CHAT ----------------
   s.subspec 'Chat' do |sp|
     sp.dependency 'SuperSDK/Core'
-    sp.source_files = 'SuperSDK_Chat/**/*.{swift}'
+    sp.source_files = '**/SuperSDK_Chat/**/*.{swift}'
   end
 
-  # -------------- NETWORK ---------------
   s.subspec 'Network' do |sp|
     sp.dependency 'SuperSDK/Core'
-    sp.source_files = 'SuperSDK_Network/**/*.{swift}'
+    sp.source_files = '**/SuperSDK_Network/**/*.{swift}'
   end
 
-  # -------------- ALL (opcional) ---------
   s.subspec 'All' do |sp|
     sp.dependency 'SuperSDK/Core'
     sp.dependency 'SuperSDK/Chat'
     sp.dependency 'SuperSDK/Network'
-    sp.source_files = 'SuperSDK_Entry/**/*.{swift}'
+    sp.source_files = '**/SuperSDK_Entry/**/*.{swift}'
   end
 end
