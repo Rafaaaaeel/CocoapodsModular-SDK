@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'SuperSDK'
-  s.version          = '1.0.15'
+  s.version          = '1.0.16'
   s.summary          = 'Modular Super SDK'
   s.description      = 'Automatic module registration via ObjC load().'
   s.homepage         = 'https://example.com'
@@ -14,14 +14,15 @@ Pod::Spec.new do |s|
   # UM ÚNICO MÓDULO SWIFT, sempre.
   s.module_name = 'SuperSDK'
 
-  s.subspec 'Core' do |sp|
+ s.subspec 'Core' do |sp|
     sp.source_files = 'SuperSDK_Core/**/*.{swift}'
-    sp.public_header_files = "SuperSDK_Core/**/*.h"
+    sp.public_header_files = 'SuperSDK_Core/**/*.h'
   end
 
-  s.subspec 'Chat' do |chat|
-    chat.source_files = 'SuperSDK_Chat/**/*.{swift,m,h}'
-    chat.dependency 'SuperSDK/Core'
+  s.subspec 'Chat' do |sp|
+    sp.dependency 'SuperSDK/Core'
+    sp.source_files = 'SuperSDK_Chat/**/*.{swift,h,m}'
+    sp.public_header_files = 'SuperSDK_Chat/**/*.h'
   end
 
   s.subspec 'Network' do |sp|
