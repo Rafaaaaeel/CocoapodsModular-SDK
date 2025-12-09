@@ -1,5 +1,5 @@
 #import <Foundation/Foundation.h>
-#import <SuperSDK_Core/SuperSDK_Core-Swift.h>
+#import <SuperSDK/SuperSDK-Swift.h>
 
 @implementation SuperSDKChatLoader
 

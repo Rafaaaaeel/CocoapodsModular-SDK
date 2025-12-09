@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'SuperSDK'
-  s.version          = '1.0.17'
+  s.version          = '1.0.18'
   s.summary          = 'Modular Super SDK with ObjC loaders'
   s.description      = 'Automatic module registration via ObjC +load()'
   s.homepage         = 'https://example.com'
