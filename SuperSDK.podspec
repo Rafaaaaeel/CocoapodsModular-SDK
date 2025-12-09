@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'SuperSDK'
-  s.version          = '1.0.11'
+  s.version          = '1.0.12'
   s.summary          = 'Modular Super SDK'
   s.description      = 'Automatic module registration via ObjC load().'
   s.homepage         = 'https://example.com'
@@ -18,9 +18,9 @@ Pod::Spec.new do |s|
     sp.source_files = 'SuperSDK_Core/**/*.{swift}'
   end
 
-  s.subspec 'Chat' do |sp|
-    sp.dependency 'SuperSDK/Core'
-    sp.source_files = 'SuperSDK_Chat/**/*.{swift}'
+  s.subspec 'Chat' do |chat|
+    chat.source_files = 'SuperSDK_Chat/**/*.{swift,m,h}'
+    chat.dependency 'SuperSDK/Core'
   end
 
   s.subspec 'Network' do |sp|
