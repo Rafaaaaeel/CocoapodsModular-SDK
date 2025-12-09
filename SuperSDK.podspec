@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'Core' do |sp|
     sp.source_files = 'SuperSDK_Core/**/*.{swift}'
-    core.public_header_files = "SuperSDK_Core/**/*.h"
+    sp.public_header_files = "SuperSDK_Core/**/*.h"
   end
 
   s.subspec 'Chat' do |chat|
