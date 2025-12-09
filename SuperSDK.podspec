@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'SuperSDK'
-  s.version          = '1.0.27'
+  s.version          = '1.0.28'
   s.summary          = 'Modular Super SDK with ObjC loaders'
   s.description      = 'Automatic module registration via ObjC +load()'
   s.homepage         = 'https://example.com'
@@ -25,16 +25,32 @@ Pod::Spec.new do |s|
   s.subspec 'Core' do |sp|
     sp.source_files = 'SuperSDK_Core/**/*.{swift,h,m}'
     sp.public_header_files = 'SuperSDK_Core/**/*.h'
+    sp.pod_target_xcconfig = {
+      'INFOPLIST_FILE' => 'SuperSDK_Core/Info.plist',
+      'CODE_SIGNING_ALLOWED' => 'NO',
+      'CODE_SIGNING_REQUIRED' => 'NO'
+    }
   end
 
   s.subspec 'Chat' do |sp|
-    sp.dependency 'SuperSDK/Core'
-    sp.source_files = 'SuperSDK_Chat/**/*.{swift,h,m}'
+  sp.dependency 'SuperSDK/Core'
+  sp.source_files = 'SuperSDK_Chat/**/*.{swift,h,m}'
+  sp.pod_target_xcconfig = {
+    'INFOPLIST_FILE' => 'SuperSDK_Chat/Info.plist',
+    'CODE_SIGNING_ALLOWED' => 'NO',
+    'CODE_SIGNING_REQUIRED' => 'NO'
+  }
   end
 
   s.subspec 'Network' do |sp|
     sp.dependency 'SuperSDK/Core'
     sp.source_files = 'SuperSDK_Network/**/*.{swift,h,m}'
+    sp.pod_target_xcconfig = {
+      'INFOPLIST_FILE' => 'SuperSDK_Network/Info.plist',
+      'CODE_SIGNING_ALLOWED' => 'NO',
+      'CODE_SIGNING_REQUIRED' => 'NO'
+    }
   end
+
 
 end
