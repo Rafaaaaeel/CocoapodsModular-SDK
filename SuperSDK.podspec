@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'SuperSDK'
-  s.version          = '1.0.24'
+  s.version          = '1.0.25'
   s.summary          = 'Modular Super SDK with ObjC loaders'
   s.description      = 'Automatic module registration via ObjC +load()'
   s.homepage         = 'https://example.com'
@@ -10,7 +10,10 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '11.0'
   s.requires_arc = true
 
-  s.static_framework = true
+  s.pod_target_xcconfig = {
+    'CODE_SIGNING_ALLOWED' => 'NO',
+    'CODE_SIGNING_REQUIRED' => 'NO'
+  }
 
   s.subspec 'Core' do |sp|
     sp.source_files = 'SuperSDK_Core/**/*.{swift,h,m}'
