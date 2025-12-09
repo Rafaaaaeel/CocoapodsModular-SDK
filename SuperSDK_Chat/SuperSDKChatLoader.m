@@ -1,16 +1,17 @@
 #import <Foundation/Foundation.h>
-@import SuperSDK_Core; // importa o Core do seu SDK
-@import SuperSDK_Chat; // importa o módulo atual
-
-@interface SuperSDKChatLoader : NSObject
-@end
+#import <SuperSDK_Core/SuperSDK_Core-Swift.h>
 
 @implementation SuperSDKChatLoader
 
 + (void)load {
-    // registra automaticamente
-    [ModuleRegistry.shared register:[[SuperSDKChat alloc] init]];
-    NSLog(@"🔵 SuperSDKChatLoader.load() — Chat module registered.");
+    Class chatClass = NSClassFromString(@"SuperSDKChat");
+    if (chatClass) {
+        id chatInstance = [[chatClass alloc] init];
+        if (chatInstance) {
+            [[ModuleRegistry shared] registerModule:chatInstance];
+            NSLog(@"🔵 SuperSDKChatLoader.load() — Chat module registered.");
+        }
+    }
 }
 
 @end
