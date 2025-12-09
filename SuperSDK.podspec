@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'SuperSDK'
-  s.version          = '1.0.26'
+  s.version          = '1.0.27'
   s.summary          = 'Modular Super SDK with ObjC loaders'
   s.description      = 'Automatic module registration via ObjC +load()'
   s.homepage         = 'https://example.com'
@@ -17,6 +17,7 @@ Pod::Spec.new do |s|
   s.preserve_paths = ['SuperSDK_Info.plist']
 
   s.pod_target_xcconfig = {
+    'INFOPLIST_FILE' => 'SuperSDK_Info.plist',
     'CODE_SIGNING_ALLOWED' => 'NO',
     'CODE_SIGNING_REQUIRED' => 'NO'
   }
