@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'SuperSDK'
-  s.version          = '1.0.21'
+  s.version          = '1.0.22'
   s.summary          = 'Modular Super SDK with ObjC loaders'
   s.description      = 'Automatic module registration via ObjC +load()'
   s.homepage         = 'https://example.com'
@@ -10,20 +10,19 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '11.0'
   s.requires_arc = true
 
+  s.static_framework = false
+
   s.subspec 'Core' do |sp|
-    sp.static_framework = false
     sp.source_files = 'SuperSDK_Core/**/*.{swift,h,m}'
     sp.public_header_files = 'SuperSDK_Core/**/*.h'
   end
 
   s.subspec 'Chat' do |sp|
-    sp.static_framework = false
     sp.dependency 'SuperSDK/Core'
     sp.source_files = 'SuperSDK_Chat/**/*.{swift,h,m}'
   end
 
   s.subspec 'Network' do |sp|
-    sp.static_framework = false
     sp.dependency 'SuperSDK/Core'
     sp.source_files = 'SuperSDK_Network/**/*.{swift,h,m}'
   end
