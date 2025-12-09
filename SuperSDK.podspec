@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'SuperSDK'
-  s.version          = '1.0.25'
+  s.version          = '1.0.26'
   s.summary          = 'Modular Super SDK with ObjC loaders'
   s.description      = 'Automatic module registration via ObjC +load()'
   s.homepage         = 'https://example.com'
@@ -9,6 +9,12 @@ Pod::Spec.new do |s|
   s.source           = { :git => 'https://github.com/Rafaaaaeel/CocoapodsModular-SDK.git', :tag => s.version }
   s.ios.deployment_target = '11.0'
   s.requires_arc = true
+
+  s.resource_bundles = {
+  'SuperSDKResources' => ['SuperSDK_Info.plist']
+  }
+
+  s.preserve_paths = ['SuperSDK_Info.plist']
 
   s.pod_target_xcconfig = {
     'CODE_SIGNING_ALLOWED' => 'NO',
